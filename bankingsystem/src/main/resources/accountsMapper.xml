@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "courseMapper">
+	<resultMap type="com.cemozan.bankingsystem.Models.Account" id="accountsResultMap">
+		<result column="tc_number" property="tc"/>
+		<result column="last_modified" property="lastModified"/>
+    </resultMap>
+	<select id="getAll" resultType="com.cemozan.bankingsystem.Models.Account">
+		SELECT * FROM accounts
+	</select>
+	<select id="findByAccountNumber" resultMap="accountsResultMap">
+		    SELECT * FROM accounts WHERE account_number = #{accountNumber}
+	</select>
+	
+	<update id="updateBalanceByAccountNumber" parameterType="com.cemozan.bankingsystem.Models.Account">
+		UPDATE accounts SET balance = #{newBalance} WHERE account_number = #{accountNumber}
+	</update>
+</mapper>
+
